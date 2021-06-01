@@ -12,10 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config({ path: "./config.env" });
 
 const db = mysql.createConnection({
-  host: "sql11.freemysqlhosting.net",
-  user: "sql11416355",
-  password: "fjVjci9Iks",
-  database: "sql11416355",
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE,
 });
 
 db.connect((err) => {
@@ -72,10 +72,6 @@ app.get("/", (req, res) => {
   let sql = "SELECT * FROM todo";
   db.query(sql, (err, result) => {
     if (err) throw err;
-    // const results = JSON.stringify(result);
-    result.forEach((hi) => {
-      console.log(hi);
-    });
     res.render("todo", { result });
   });
 });
@@ -113,11 +109,12 @@ app.get("/remove/:id", (req, res) => {
   let sql = "DELETE FROM todo WHERE id = ?";
   db.query(sql, req.params.id, (err, result) => {
     if (err) throw err;
-    console.log("deleted fam");
     res.redirect("/");
   });
 });
 
-app.listen(3000, () => {
-  console.log("listening on port 3000");
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
 });
