@@ -78,7 +78,6 @@ app.get("/", (req, res) => {
 
 //POST
 app.post("/", (req, res) => {
-  console.log(req.body);
   let data = req.body;
   let sql = "INSERT INTO todo SET ?";
   db.query(sql, data, (err, result) => {
@@ -98,7 +97,7 @@ app.get("/edit/:id", (req, res) => {
 app.post("/edit/:id", (req, res) => {
   let query = req.body.task;
   let sql = `UPDATE todo SET task = ? WHERE id = ${req.params.id}`;
-  console.log(req.body);
+
   db.query(sql, query, (err, result) => {
     if (err) throw err;
     res.redirect("/");
