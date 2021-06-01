@@ -12,10 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config({ path: "./config.env" });
 
 const db = mysql.createConnection({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE,
+  host: "sql11.freemysqlhosting.net",
+  user: "sql11416355",
+  password: "fjVjci9Iks",
+  database: "sql11416355",
 });
 
 db.connect((err) => {
