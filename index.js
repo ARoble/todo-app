@@ -71,7 +71,7 @@ db.connect((err) => {
 app.get("/", (req, res) => {
   let sql = "SELECT * FROM todo";
   db.query(sql, (err, result) => {
-    if (err) throw err;
+    // if (err) throw err;
     res.render("todo", { result });
   });
 });
