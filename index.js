@@ -12,11 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config({ path: "./config.env" });
 
 const db = mysql.createConnection({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE,
-  socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock",
+  host: "127.0.0.1",
+  user: "root",
+  password: "",
+  database: "todo",
 });
 
 db.connect((err) => {
